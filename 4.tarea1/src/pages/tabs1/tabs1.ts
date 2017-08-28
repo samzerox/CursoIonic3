@@ -15,11 +15,11 @@ export class Tabs1Page {
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     this.personajes = PERSONAJES.slice(0);
-    console.log(this.personajes);
+    // console.log(this.personajes);
   }
 
   irPagina2(personaje:any){
-    console.log(personaje);
+    // console.log(personaje);
     this.navCtrl.push( Pagina2Page,{'personaje': personaje} );
   }
 
