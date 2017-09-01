@@ -31,7 +31,7 @@ export class HistorialService {
       //push pone el objeto al final pero lo necesitamos al principio por eso usamos unshift()
       this._historial.unshift( data );
 
-      console.log(this._historial);
+      console.log(JSON.stringify(this._historial));
 
       this.abrir_scan(0);
   }
@@ -58,7 +58,7 @@ export class HistorialService {
         case "email":
 
           //Pendiente por usar el EmailComposer
-          
+
           let htmlLink = scanData.info;
 
           htmlLink = htmlLink.replace("MATMSG:TO:","mailto:");
