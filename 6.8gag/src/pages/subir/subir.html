@@ -12,6 +12,16 @@
 
 
     <ion-title text-center>{{ titulo | placeholder:"Crear Post" }}</ion-title>
+
+
+  <ion-buttons end>
+      <button ion-button
+              [disabled]="img.length < 2 || titulo.length < 2"
+              (click)="crear_post()">
+          Crear post
+      </button>
+  </ion-buttons>
+
   </ion-navbar>
 
 </ion-header>

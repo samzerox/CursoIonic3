@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { ViewController, ToastController, Platform } from 'ionic-angular';
+import { ViewController, ToastController, Platform, LoadingController } from 'ionic-angular';
 
 //plugins
 import { Camera, CameraOptions } from '@ionic-native/camera';
@@ -11,6 +11,9 @@ import { Camera, CameraOptions } from '@ionic-native/camera';
 // Saved plugin info for "com.synconset.imagepicker" to config.xml
 import { ImagePicker, ImagePickerOptions } from '@ionic-native/image-picker';
 
+//Servicios
+import { CargaArchivosService } from '../../providers/carga-archivos/carga-archivos';
+
 
 @Component({
   selector: 'page-subir',
@@ -20,13 +23,45 @@ export class SubirPage {
 
   titulo:string = "";
   imgPreview:string = null;
-  img:string = null;
+  img:string = "";
 
   constructor( private viewCtrl:ViewController,
                 private camera: Camera,
                 private imagePicker: ImagePicker,
                 private toastCtrl:ToastController,
+                private _cas:CargaArchivosService,
+                private loadingCtrl:LoadingController,
                 private platform:Platform) {
+  }
+
+  crear_post(){
+    console.log("Subiendo imagen");
+
+    let archivo={
+      'titulo': this.titulo,
+      'img': this.img
+    };
+
+    let loader = this.loadingCtrl.create({
+      content: "Subiendo..."
+
+    });
+    loader.present();
+
+    this._cas.cargar_imagenes_firebase( archivo )
+          .then(
+            ()=>{
+                loader.dismiss();
+                this.cerrar_modal();
+            },
+            (error) =>{
+              loader.dismiss();
+              this.mostrar_toast("Error al cargar: " + error);
+              console.error("Error al cargar: ", JSON.stringify(error) );
+            }
+          )
+
+
   }
 
   cerrar_modal(){

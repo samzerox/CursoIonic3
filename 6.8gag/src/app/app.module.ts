@@ -23,6 +23,7 @@ import { ImagePicker } from '@ionic-native/image-picker';
 
 //Servicios / providers
 import { CargaArchivosService } from '../providers/carga-archivos/carga-archivos';
+import { AuthService } from '../providers/auth-service/auth-service';
 
 @NgModule({
   declarations: [
@@ -50,7 +51,8 @@ import { CargaArchivosService } from '../providers/carga-archivos/carga-archivos
     Camera,
     ImagePicker,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    CargaArchivosService
+    CargaArchivosService,
+    AuthService
   ]
 })
 export class AppModule {}

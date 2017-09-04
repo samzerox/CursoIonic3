@@ -1,0 +1,6 @@
+<platform name="android">
+        <preference name="loadUrlTimeoutValue" value="700000" />
+</platform>
+
+
+esto va en res/xml/config.xml

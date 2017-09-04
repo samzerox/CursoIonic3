@@ -3,7 +3,10 @@ import { NavController, ModalController } from 'ionic-angular';
 
 import { SubirPage } from '../subir/subir';
 
-import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
+//servicios
+import { CargaArchivosService } from '../../providers/carga-archivos/carga-archivos';
+import { AuthService } from '../../providers/auth-service/auth-service';
+
 
 @Component({
   selector: 'page-home',
@@ -11,15 +14,40 @@ import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/databa
 })
 export class HomePage {
 
-  posts: FirebaseListObservable<any[]>;
+hayMas:boolean = true;
 
   constructor(private modalCtrl:ModalController,
-              private afDB: AngularFireDatabase) {
+              private _cas:CargaArchivosService,
+              private _auth: AuthService) {
 
-                //no tenemos /cuisines porque el que hicmo es posts
-        this.posts = afDB.list('/posts');
+          this._cas.cargar_imagenes();
   }
 
+
+  salir(){
+
+  }
+
+  ingresar(): void {
+    this._auth.signInWithFacebook()
+      .then(() => this.onSignInSuccess());
+  }
+
+  private onSignInSuccess(): void {
+    console.log("Facebook nombre ",this._auth.displayName());
+  }
+
+
+  cargar_siguientes( infiniteScroll:any){
+      console.log("siguientes");
+      this._cas.cargar_imagenes()
+              .then(
+                ( existenMas:boolean )=>{
+                  infiniteScroll.complete();
+                  console.log(existenMas);
+                  this.hayMas = existenMas
+                })
+  }
 
   mostrar_modal(){
       let modal = this.modalCtrl.create( SubirPage);
