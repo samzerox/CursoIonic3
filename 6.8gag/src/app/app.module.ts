@@ -21,6 +21,7 @@ import { PlaceholderPipe } from '../pipes/placeholder/placeholder';
 //plugins
 import { Camera } from '@ionic-native/camera';
 import { ImagePicker } from '@ionic-native/image-picker';
+import { SocialSharing } from '@ionic-native/social-sharing';
 
 //Servicios / providers
 import { CargaArchivosService } from '../providers/carga-archivos/carga-archivos';
@@ -52,6 +53,7 @@ import { AuthService } from '../providers/auth-service/auth-service';
     Camera,
     ImagePicker,
     Facebook,
+    SocialSharing,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     CargaArchivosService,
     AuthService
