@@ -13,6 +13,7 @@ import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { firebaseConfig } from '../config/firebase.config';
+import { Facebook } from '@ionic-native/facebook';
 
 //Pipes
 import { PlaceholderPipe } from '../pipes/placeholder/placeholder';
@@ -50,6 +51,7 @@ import { AuthService } from '../providers/auth-service/auth-service';
     SplashScreen,
     Camera,
     ImagePicker,
+    Facebook,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     CargaArchivosService,
     AuthService

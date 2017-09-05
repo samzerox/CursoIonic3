@@ -10,29 +10,34 @@ import { Facebook, FacebookLoginResponse } from '@ionic-native/facebook';
 
 @Injectable()
 export class AuthService {
-  private currentUser: firebase.User;
+  displayName;
 
-  constructor(public afAuth: AngularFireAuth) {
-    afAuth.authState.subscribe((user: firebase.User) => this.currentUser = user);
-  }
-
-  get authenticated(): boolean {
-    return this.currentUser !== null;
-  }
-
-  signInWithFacebook(): firebase.Promise<any> {
-    return this.afAuth.auth.signInWithPopup(new firebase.auth.FacebookAuthProvider());
-  }
-
-  signOut(): void {
-    this.afAuth.auth.signOut();
-  }
-
-  displayName(): string {
-    if (this.currentUser !== null) {
-      // return this.currentUser.facebook.displayName;
-    } else {
-      return '';
+    constructor(private afAuth: AngularFireAuth, private fb: Facebook, private platform: Platform) {
+      afAuth.authState.subscribe((user: firebase.User) => {
+        if (!user) {
+          this.displayName = null;
+          return;
+        }
+        this.displayName = user.displayName;
+      });
     }
-  }
+
+    signInWithFacebook() {
+      if (this.platform.is('cordova')) {
+        return this.fb.login(['email', 'public_profile']).then(res => {
+          const facebookCredential = firebase.auth.FacebookAuthProvider.credential(res.authResponse.accessToken);
+          return firebase.auth().signInWithCredential(facebookCredential);
+        })
+      }
+      else {
+        return this.afAuth.auth
+          .signInWithPopup(new firebase.auth.FacebookAuthProvider())
+          .then(res => console.log(res));
+      }
+    }
+
+    signOut() {
+      this.afAuth.auth.signOut();
+    }
+
 }

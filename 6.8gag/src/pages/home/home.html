@@ -7,12 +7,14 @@
 
     <ion-buttons end>
       <button ion-button
+              *ngIf="!_auth.displayName"
               (click)="ingresar()">
           Ingresar
       </button>
 
       <button ion-button
-              (salir)="salir()">
+              *ngIf="_auth.displayName"
+              (click)="salir()">
           Salir
       </button>
     </ion-buttons>
@@ -47,7 +49,8 @@
 
 
 
-  <ion-fab bottom right>
+  <ion-fab bottom right
+            *ngIf="_auth.displayName">
 
     <button ion-fab color="danger"
             (click)="mostrar_modal()">
@@ -55,6 +58,7 @@
     </button>
 
   </ion-fab>
+
 
 
 
