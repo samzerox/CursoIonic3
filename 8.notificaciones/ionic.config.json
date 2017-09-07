@@ -1,5 +1,8 @@
 {
   "name": "notificaciones",
-  "app_id": "",
-  "type": "ionic-angular"
+  "app_id": "44675828",
+  "type": "ionic-angular",
+  "integrations": {
+    "cordova": {}
+  }
 }
