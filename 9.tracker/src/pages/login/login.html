@@ -10,6 +10,11 @@
         <img src="assets/img/usuario.jpg" class="slide-image"/>
         <h2 class="slide-title">Ingrese su clave</h2>
         <p>Para continuar, debe de ingresar su código</p>
+        <button ion-button
+                [disabled]="clave.length < 3"
+                (click)="continuar()">
+          Verificar
+        </button>
 
         <ion-list>
           <ion-item>

@@ -84,6 +84,11 @@ export class UsuarioService {
 
     }
 
+    borrar_usuario(){
+      this.clave = null;
+      this.guardar_storage();
+    }
+
 
 
 
