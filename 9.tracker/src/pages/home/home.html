@@ -4,7 +4,7 @@
   <ion-buttons>
       <button ion-button
               (click)="salir()">
-        Salir  
+        Salir
       </button>
   </ion-buttons>
 
@@ -16,7 +16,8 @@
 </ion-header>
 
 <ion-content>
-
+<!-- background Geolocation es un plugin para poder hacer que funcione la app en segundo plano(aqui
+no se usa pero lo recomienda para mejorar la app) -->
     <agm-map [latitude]="usuario.lat" [longitude]="usuario.lng" [zoom]="17">
         <agm-marker [latitude]="usuario.lat"
                     [longitude]="usuario.lng"
