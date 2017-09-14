@@ -9,6 +9,9 @@ import { HttpModule } from '@angular/http';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 
+//Pipes
+import { ImagenPipe } from '../pipes/imagen/imagen';
+
 //paginas
 import { CarritoPage,
           CategoriasPage,
@@ -37,7 +40,8 @@ import { CarritoService,
     OrdenesDetallePage,
     PorCategoriasPage,
     ProductoPage,
-    TabsPage
+    TabsPage,
+    ImagenPipe
   ],
   imports: [
     BrowserModule,

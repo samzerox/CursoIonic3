@@ -9,6 +9,8 @@ import { ProductosService } from '../../providers/productos/productos';
 })
 export class HomePage {
 
+  hayMas:boolean = true;
+
     constructor(public navCtrl: NavController,
                 private _ps: ProductosService) {
 
@@ -16,8 +18,10 @@ export class HomePage {
 
     siguiente_pagina( infiniteScroll ){
         this._ps.cargar_todos()
-              .then( ()=>{
+              .then( ( existenMas:boolean )=>{
                   infiniteScroll.complete();
+                  // console.log( existenMas );
+                  this.hayMas = existenMas;
               });
     }
 

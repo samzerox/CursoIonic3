@@ -24,22 +24,39 @@ export class ProductosService {
                     .map( resp => resp.json() )
                     .subscribe( data => {
 
-                        console.log( data);
                         if ( data.error ) {
                             //aqui hay un problema
                         }else{
-                          this.productos.push(...data.productos );
+
+                          let nuevaData = this.agrupar( data.productos, 2 );
+
+                          this.productos.push( ...nuevaData );
                           this.pagina += 1;
+                          console.log( this.productos );
                         }
 
-                        resolve();
+                        if (data.productos.length == 0) {
+                            console.log("Ya no hay registros");
+                            resolve(false);
+                            return;
+                        }
+
+                        resolve(true);
                     })
       });
 
       return promesa;
 
+  }
 
+  private agrupar(arr:any, tamano:number ){
+      let nuevoArreglo =[];
+      for(let i = 0; i<arr.length; i+=tamano){
+          nuevoArreglo.push( arr.slice(i, i+tamano) );
+      }
 
+      // console.log( nuevoArreglo);
+      return nuevoArreglo;
   }
 
 }
