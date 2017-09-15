@@ -9,6 +9,9 @@ import { HttpModule } from '@angular/http';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 
+//Storage
+import { IonicStorageModule } from '@ionic/storage';
+
 //Pipes
 import { ImagenPipe } from '../pipes/imagen/imagen';
 
@@ -46,7 +49,8 @@ import { CarritoService,
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
-    HttpModule
+    HttpModule,
+    IonicStorageModule.forRoot()
   ],
   bootstrap: [IonicApp],
   entryComponents: [

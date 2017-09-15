@@ -9,10 +9,41 @@ export class ProductosService {
 
   pagina:number = 0;
   productos:any[] = [];
+  lineas:any[]=[];
+  por_categoria:any[] = [];
 
   constructor(public http: Http) {
     // console.log('Hello ProductosProvider Provider');
     this.cargar_todos();
+    this.cargar_lineas();
+  }
+
+  cargar_lineas(){
+
+      let url = URL_SERVICIOS + "/lineas";
+      this.http.get( url )
+                .map( resp=> resp.json() )
+                .subscribe( data => {
+                    if (data.error) {
+                        //errores
+
+                    }else{
+                        this.lineas = data.lineas;
+                        console.log( this.lineas);
+                    }
+                })
+
+  }
+
+  cargar_por_categoria( categoria:number ){
+
+      let url = URL_SERVICIOS + "/productos/por_tipo/" + categoria;
+      this.http.get( url)
+                .map( resp=> resp.json() )
+                .subscribe( data => {
+                    console.log( data.productos );
+                    this.por_categoria = data.productos;
+                });
   }
 
   cargar_todos(){
@@ -57,6 +88,25 @@ export class ProductosService {
 
       // console.log( nuevoArreglo);
       return nuevoArreglo;
+  }
+
+  obtener_producto( ){
+      let url = URL_SERVICIOS + "/productos/obtener_producto/S10_2016";
+
+      this.http.get( url )
+                .map( resp => resp.json() )
+                .subscribe( data => {
+
+                    if ( data.error ) {
+                        //aqui hay un problema
+                    }else{
+
+                      console.log( data);
+                    }
+
+
+                })
+
   }
 
 }
