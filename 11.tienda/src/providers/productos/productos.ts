@@ -109,4 +109,40 @@ export class ProductosService {
 
   }
 
+  buscar( termino:string ){
+
+      let promesa = new Promise( (resolve, reject )=>{
+          let url = URL_SERVICIOS + "/productos/todos/" + this.pagina;
+
+          this.http.get( url )
+                    .map( resp => resp.json() )
+                    .subscribe( data => {
+
+                        if ( data.error ) {
+                            //aqui hay un problema
+                        }else{
+
+                          let nuevaData = this.agrupar( data.productos, 2 );
+
+                          this.productos.push( ...nuevaData );
+                          this.pagina += 1;
+                          console.log( this.productos );
+                        }
+
+                        if (data.productos.length == 0) {
+                            console.log("Ya no hay registros");
+                            resolve(false);
+                            return;
+                        }
+
+                        resolve(true);
+                    })
+      });
+
+      return promesa;
+
+  }
+
+
+
 }

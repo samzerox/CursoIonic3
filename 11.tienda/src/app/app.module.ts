@@ -16,7 +16,8 @@ import { IonicStorageModule } from '@ionic/storage';
 import { ImagenPipe } from '../pipes/imagen/imagen';
 
 //paginas
-import { CarritoPage,
+import {  BuscarPage,
+          CarritoPage,
           CategoriasPage,
           LoginPage,
           OrdenesPage,
@@ -36,6 +37,7 @@ import { CarritoService,
   declarations: [
     MyApp,
     HomePage,
+    BuscarPage,
     CarritoPage,
     CategoriasPage,
     LoginPage,
@@ -56,6 +58,7 @@ import { CarritoService,
   entryComponents: [
     MyApp,
     HomePage,
+    BuscarPage,
     CarritoPage,
     CategoriasPage,
     LoginPage,
