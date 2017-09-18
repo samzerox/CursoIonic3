@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { HomePage, CategoriasPage, OrdenesPage } from '../index.paginas';
+import { HomePage, CategoriasPage, OrdenesPage, BusquedaPage } from '../index.paginas';
 
 @Component({
   selector: 'page-tabs',
@@ -10,6 +10,7 @@ export class TabsPage {
   tab1 = HomePage;
   tab2 = CategoriasPage;
   tab3 = OrdenesPage;
+  tab4 = BusquedaPage;
 
 
 }

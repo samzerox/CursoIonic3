@@ -1,4 +1,5 @@
 
+export { BusquedaPage } from './busqueda/busqueda';
 export { CarritoPage } from './carrito/carrito';
 export { CategoriasPage } from './categorias/categorias';
 export { LoginPage } from './login/login';
