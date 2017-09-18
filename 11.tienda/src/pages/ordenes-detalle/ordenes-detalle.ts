@@ -17,7 +17,7 @@ export class OrdenesDetallePage {
   }
 
   borrar_orden( orden_id:string ){
-      this._cs.borrar_orden( orden_id)
+      this._cs.borrar_orden( orden_id )
                     .subscribe( data =>{
                         if (data.error) {
                             //manejo de errores
